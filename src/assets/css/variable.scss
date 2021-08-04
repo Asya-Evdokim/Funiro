@@ -1,0 +1,46 @@
+// font
+$font-base: 'Gilroy', sans-serif;
+$font-size-h1: 700 56px / 120% $font-base; //Главный заголовок
+$font-size-h2: 700 40px / 120% $font-base; //заголовок блоков
+$font-size-h5: 600 24px / 120% $font-base; //заголовки карточек
+
+$font-size-small: 500 16px / 150% $font-base; //текст
+
+$font-size-btn: 600 16px / 150% $font-base; //кнопки
+
+// color
+$color-main: #FCF8F3;
+$color-gray: #616161;
+$color-text: #3A3A3A;
+
+
+$color-orange: #E89F71;
+
+
+$color-text-btn: #fff;
+$color-prime-active: #152075;
+$color-sub-active: #401F62;
+$color-error: #FF5E5E;
+
+
+//size
+$max-width: 1440px;
+
+// indent
+$grid-gap: 20px;
+
+// responsive-breakpoints
+$responsive-breakpoints: (
+  xs: 767px,
+  sm: 768px,
+  md: 1024px,
+  lg: 1279px,
+  xl: 1920px,
+);
+
+
+//variable
+
+$md2: 991.98;
+$md3: 767.98;
+$md4: 479.98;
