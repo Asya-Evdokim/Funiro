@@ -5,7 +5,7 @@
         <div class="header__left">
           <a href="#" class="header__logo">Funiro.</a>
           <div class="header__menu menu">
-            <nav class="menu__body">
+            <nav class="menu__body" :class="{_active: menuBurger.burger}">
             <ul class="menu__list">
               <li class="menu__item" :class="{active: menuVisible.products}">
                 <a href="#" class="menu__link" @click="toggleProducts">Products</a>
@@ -61,12 +61,19 @@
            <img class="header__avatar" src="~@/assets/img/logo.jpg" alt="Avatar" >
            </a>
         </div>
+        <button type="button" class="icon-menu" :class="{_active: menuBurger.burger}" @click="toggleBurger">
+              <span></span>
+              <span></span>
+              <span></span>
+        </button>
     </div>
   </header>
 </template>
 
 
 <script>
+
+
 
 export default {
   name: "Header",
@@ -75,6 +82,10 @@ export default {
 
     data() {
       return {
+        menuBurger: {
+          burger: false
+        },
+
         menuVisible: {
           products: false, 
           rooms: false
@@ -82,10 +93,15 @@ export default {
       }
     }, 
     methods: {
+      toggleBurger() {
+        this.menuBurger.burger = !this.menuBurger.burger;
+      },
+
       toggleProducts() {
         this.menuVisible.products = !this.menuVisible.products;
         this.menuVisible.rooms = false;
       }, 
+
       toggleRooms() {
         this.menuVisible.rooms = !this.menuVisible.rooms;
         this.menuVisible.products = false;
@@ -109,6 +125,12 @@ export default {
     padding-top: 5px;
     padding-bottom: 5px;
     min-height: 125px;
+    @media (max-width: $md2 +px) {
+      min-height: 80px;
+    }
+    @media (max-width: $md3 +px) {
+      min-height: 50px;
+    }
 	}
 
 	&__left {
@@ -124,10 +146,16 @@ export default {
 	&__logo {
     color: #000;
     font: 700 24px / 120% $font-base;
+
+    @media (max-width: $md2 +px) {
+      padding-right: 20px;
+    }
+
+    
 	}
   
   &__search {
-    margin-right: 32px;
+    margin: 0 32px;
 
     @media (min-width: $md2 +px) {
       flex-grow: 1;
@@ -155,6 +183,41 @@ export default {
 
 .menu {
   flex: 0 1 420px;
+
+  &__body {
+    @include respond-to('xs') {
+      position: fixed;
+      width: 100vw;
+      height: 100vh;
+      overflow: auto;
+      top: 0;
+      left: -100%;
+      //background-color: $color-burger;
+      transition: left 0.3s ease 0s;
+      padding: 70px 15px 30px 15px;
+
+      &::before {
+        content: " ";
+        position: fixed;
+        width: 100%;
+        height: 50px;
+        top: 0;
+        left: -100%;
+        background-color: $color-main;
+      }
+
+      &._active {
+        
+        left: 0;
+        &::before {
+          left: 0;
+        }
+      
+      }
+
+      
+    }
+  }
 
   &__list {
     @media (min-width: $md3+px) {
@@ -192,6 +255,24 @@ export default {
     @include respond-to('md') {
       &.active {
         .menu__sub-list {
+          position: relative;
+          transform: translate(0, 0);
+          opacity: 1;
+          visibility: visible;
+          pointer-events: auto;
+        }
+        .menu__arrow {
+          transform: rotate(-180deg);
+        }
+        .menu__arrow, 
+        .menu__link {
+          color: $color-orange;
+        }
+      }
+    }
+    @include respond-to('xs') {
+      &.active {
+        .menu__sub-list {
           transform: translate(0, 0);
           opacity: 1;
           visibility: visible;
@@ -210,6 +291,10 @@ export default {
 
 	&__link {
     transition: color 0.3s ease 0;
+
+    @include respond-to('xs') {
+      font: $font-size-h5;
+    }
 	}
 
 	&__arrow {
@@ -219,30 +304,42 @@ export default {
 	}
 
 	&__sub-list {
-    position: relative;
     background-color: $color-orange;
     padding: 15px;
     flex: 1 1 100%;
-
-    @media (min-width: $md3+px) {
-      opacity: 0;
-      visibility: hidden;
-      min-width: 200px;
-      left: 0;
-      position: absolute;
-      top: 100%;
-      transition: all 0.3s ease 0s;
-      transform: translate(0, 10px);
-      pointer-events: none;
-    }
+    z-index: 5;
+    opacity: 0;
+    visibility: hidden;
+    min-width: 200px;
+    left: 0;
+    position: absolute;
+    top: 100%;
+    transition: all 0.3s ease 0s;
+    transform: translate(0, 10px);
+    pointer-events: none;
 	}
+
 	&__sub-item {
     &:not(:last-child){
        margin: 0 0 5px 0;
+       @include respond-to('xs') {
+         margin: 0 0 10px 0;
+       }
     }
+
+    @include respond-to('xs') {
+         font-size: 18px;
+       }
 	}
 	&__sub-link {
     color: #fff;
+
+    @media (any-hover: hover) {
+      &:hover {
+        text-decoration: underline;
+      }
+      
+    }
 	}
 }
 
@@ -359,4 +456,54 @@ export default {
     }
 	}
 }
+
+.icon-menu {
+  display: none;
+
+  @include respond-to('xs') {
+    margin: 0 10px;
+    display: block;
+    position: relative;
+    //position: absolute;
+    //top: 18px;
+    //right: 10px;
+    //width: 30px;
+    flex: 0 0 30px;
+    height: 18px;
+    cursor: pointer;
+    z-index: 5;
+
+    span {
+      transition: all 0.3s ease 0;
+      top: calc(50%-1px);
+      left: 0;
+      position: absolute;
+      width: 100%;
+      height: 2px;
+      background-color: #000;
+      &:first-child {
+        top: 0;
+      }
+      &:last-child {
+        top: auto;
+        bottom: 0;
+      }
+    }
+    &._active {
+      
+        span {
+            transform: scale(0);
+            &:first-child {
+                transform: rotate(-45deg);
+                top: calc(50% - 1px);
+            }
+
+            &:last-child {
+                transform: rotate(45deg);
+                bottom: calc(50% - 1px);
+            }
+        }
+    }
+  }
+} 
 </style>

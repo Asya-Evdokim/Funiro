@@ -1,5 +1,5 @@
 <template>
-  <button type="button" class="icon-menu">
+  <button type="button" class="icon-menu" :class="{_active: menuBurger.burger}" @click="toggleBurger">
               <span></span>
               <span></span>
               <span></span>
@@ -12,6 +12,20 @@ export default {
   components: {
     },
 
+    data() {
+      return {
+        menuBurger: {
+          burger: false
+        }
+      }
+    }, 
+    methods: {
+      toggleBurger() {
+        this.menuBurger.burger = !this.menuBurger.burger;
+        
+      }
+    }
+
 }
 </script>
 
@@ -20,12 +34,14 @@ export default {
 .icon-menu {
   display: none;
 
-  @include respond-to('sm') {
+  @include respond-to('xs') {
     display: block;
-    position: absolute;
-    top: 18px;
-    right: 10px;
-    width: 30px;
+    position: relative;
+    //position: absolute;
+    //top: 18px;
+    //right: 10px;
+    //width: 30px;
+    flex: 0 0 30px;
     height: 18px;
     cursor: pointer;
     z-index: 5;
@@ -51,10 +67,17 @@ export default {
             transform: scale(0);
             &:first-child {
                 transform: rotate(-45deg);
-                top: calc(50%- 1px);
+                top: calc(50% - 1px);
+            }
+
+            &:last-child {
+                transform: rotate(45deg);
+                bottom: calc(50% - 1px);
             }
         }
     }
   }
 } 
+
+
 </style>
