@@ -137,6 +137,7 @@ export default {
     display: flex;
     align-items: center;
     flex: 0 0 494/1240 * 100%;
+    z-index: 2;
 
     @media (max-width: $md2 +px) {
       flex: 1 1 auto;
@@ -192,7 +193,7 @@ export default {
       overflow: auto;
       top: 0;
       left: -100%;
-      //background-color: $color-burger;
+      background-color: $color-main;
       transition: left 0.3s ease 0s;
       padding: 70px 15px 30px 15px;
 
@@ -203,7 +204,7 @@ export default {
         height: 50px;
         top: 0;
         left: -100%;
-        background-color: $color-main;
+        //background-color: $color-main;
       }
 
       &._active {

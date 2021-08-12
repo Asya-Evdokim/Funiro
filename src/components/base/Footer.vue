@@ -14,9 +14,9 @@
       <div class="footer__menu menu-footer">
         <nav class="menu-footer__body">
           <ul class="menu-footer__list">
-            <li class="menu-footer__item" @click="toggleSpoiler" :class="{active: menuSpoiler.spoiler}">
-              <a href="#" class="menu-footer__link title-footer">Menu</a>
-              <button class="menu-footer__arrow icon-arrow-down"></button>
+            <li class="menu-footer__item"   :class="{active: menuSpoiler.menu}">
+              <a href="#" class="menu-footer__link title-footer" @click="toggleMenu">Menu</a>
+              <button class="menu-footer__arrow icon-arrow-down" @click="toggleMenu"></button>
               <ul class="menu-footer__sub-list">
                 <li class="menu-footer__sub-item" ><a href="#" class="menu-footer__sub-item">Products</a></li>
                 <li class="menu-footer__sub-item"><a href="#" class="menu-footer__sub-item">Rooms</a></li>
@@ -25,23 +25,23 @@
                 <li class="menu-footer__sub-item"><a href="#" class="menu-footer__sub-item">Terms & Policy</a></li>
               </ul>
               </li>
-            <li class="menu-footer__item" @click="toggleSpoiler" :class="{active: menuSpoiler.spoiler}">
-              <a href="#" class="menu-footer__link title-footer">Account</a>
-              <button class="menu-footer__arrow icon-arrow-down"></button>
-              <ul class="menu-footer__sub-list" :class="{active: menuSpoiler.spoiler}">
+            <li class="menu-footer__item" :class="{active: menuSpoiler.account}">
+              <a href="#" class="menu-footer__link title-footer" @click="toggleAccount" >Account</a>
+              <button class="menu-footer__arrow icon-arrow-down" @click="toggleAccount" ></button>
+              <ul class="menu-footer__sub-list">
                 <li class="menu-footer__sub-item"><a href="#" class="menu-footer__sub-item">My Account</a></li>
                 <li class="menu-footer__sub-item"><a href="#" class="menu-footer__sub-item">Checkout</a></li>
                 <li class="menu-footer__sub-item"><a href="#" class="menu-footer__sub-item">My Cart</a></li>
                 <li class="menu-footer__sub-item"><a href="#" class="menu-footer__sub-item">My catalog</a></li>
               </ul>
               </li>
-            <li class="menu-footer__item" @click="toggleSpoiler" :class="{active: menuSpoiler.spoiler}">
-              <a href="#" class="menu-footer__link title-footer">Stay Connected</a>
-              <button class="menu-footer__arrow icon-arrow-down"></button>
-              <ul class="menu-footer__sub-list" :class="{active: menuSpoiler.spoiler}">
-                <li class="menu-footer__sub-item"><a href="https://www.facebook.com/" class="menu-footer__sub-item">Facebook</a></li>
-                <li class="menu-footer__sub-item"><a href="https://www.instagram.com/" class="menu-footer__sub-item">Instagram</a></li>
-                <li class="menu-footer__sub-item"><a href="https://twitter.com/" class="menu-footer__sub-item">Twitter</a></li>
+            <li class="menu-footer__item" :class="{active: menuSpoiler.connect}">
+              <a href="#" class="menu-footer__link title-footer" @click="toggleConnect">Stay Connected</a>
+              <button class="menu-footer__arrow icon-arrow-down" @click="toggleConnect"></button>
+              <ul class="menu-footer__sub-list">
+                <li class="menu-footer__sub-item"><a href="https://www.facebook.com/" class="menu-footer__sub-item" target="_blank">Facebook</a></li>
+                <li class="menu-footer__sub-item"><a href="https://www.instagram.com/" class="menu-footer__sub-item" target="_blank">Instagram</a></li>
+                <li class="menu-footer__sub-item"><a href="https://twitter.com/" class="menu-footer__sub-item" target="_blank">Twitter</a></li>
               </ul>
               </li>
           </ul>
@@ -69,15 +69,30 @@ export default {
     data() {
       return {
         menuSpoiler: {
-          spoiler: false
+          menu: false,
+          account: false,
+          connect: false
         }
     }
 },
 
 methods: {
-  toggleSpoiler() {
-        this.menuSpoiler.spoiler = !this.menuSpoiler.spoiler;
-      }
+  toggleMenu() {
+        this.menuSpoiler.menu = !this.menuSpoiler.menu;
+        this.menuSpoiler.account = false;
+        this.menuSpoiler.connect = false;
+      },
+  toggleAccount() {
+        this.menuSpoiler.account = !this.menuSpoiler.account;
+        this.menuSpoiler.connect = false;
+        this.menuSpoiler.menu = false;
+      },
+  toggleConnect() {
+        this.menuSpoiler.connect = !this.menuSpoiler.connect;
+        this.menuSpoiler.account = false;
+        this.menuSpoiler.menu = false;
+      }       
+
 }
 }
 </script>
@@ -206,6 +221,10 @@ methods: {
           .menu-footer__sub-list {
             display: list-item;
           }
+
+          .menu-footer__arrow {
+            transform: rotate(-180deg);
+          }
         }
 		}
 
@@ -217,10 +236,12 @@ methods: {
         position: absolute;
         top: 0;
         right: 0;
+        transition: all 0.3s ease 0s;
       }
 		}
 
     &__sub-list {
+      
       @include respond-to('xs') {
         display: none;       
       }
