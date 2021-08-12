@@ -119,7 +119,7 @@ methods: {
 		&__main {
       grid-column: 1/4;
       display: grid;
-      grid-gap: clamp(5px,1vw,16px);
+      grid-gap: clamp(10px,1vw,16px);
 
       @include respond-to('lg') {
         grid-column: 2 span;
