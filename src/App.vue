@@ -1,14 +1,16 @@
   <template>
     <div id="app">
       <Header/>
-      <main class="main">
+      <main class="page">
         <main-slider/>
+        <feature/>
 
       </main>
       <Footer/>
     </div>
 </template>
 <script>
+import Feature from './components/base/Feature.vue';
 
 
 import Footer from "./components/base/Footer";
@@ -22,6 +24,7 @@ export default {
     Header,
     Footer,
     MainSlider,
+    Feature,
   },
 }
 </script>

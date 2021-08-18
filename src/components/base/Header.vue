@@ -73,8 +73,6 @@
 
 <script>
 
-
-
 export default {
   name: "Header",
   components: {
@@ -112,11 +110,13 @@ export default {
 
 <style scoped lang="scss">
 .header {
-  //position: absolute;
+  position: relative;
   width: 100%;
   top: 0;
   left: 0;
   background-color: $color-main;
+
+  
   
   &__wrapper {
     display: flex;
@@ -156,16 +156,17 @@ export default {
 	}
   
   &__search {
-    margin: 0 32px;
+    margin-right: 32px;
 
     @media (min-width: $md2 +px) {
       flex-grow: 1;
+      z-index: 1;
     }
 	}
 
 	&__right {
     display: grid;
-    grid-gap: $grid-gap;
+    grid-gap: 32px;
     grid-template-columns: auto;
     grid-auto-flow: column;
     align-items: center;
@@ -208,15 +209,11 @@ export default {
       }
 
       &._active {
-        
         left: 0;
         &::before {
           left: 0;
         }
-      
       }
-
-      
     }
   }
 

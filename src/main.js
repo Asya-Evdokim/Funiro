@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import App from './App.vue'
 
+import VueSplide from '@splidejs/vue-splide';
 
-// add vue-parallax-js to vue
+Vue.use( VueSplide );
+
 
 
 Vue.config.productionTip = false

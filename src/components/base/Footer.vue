@@ -293,7 +293,7 @@ methods: {
 
       @media (any-hover: hover) {
         &:hover {
-          background-color:#e2b396;
+          background-color: $color-hover-orange;
         }
       }
 		}
