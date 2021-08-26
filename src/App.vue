@@ -1,30 +1,19 @@
   <template>
     <div id="app">
       <Header/>
-      <main class="page">
-        <main-slider/>
-        <feature/>
-
-      </main>
+      <router-view/>
       <Footer/>
     </div>
 </template>
 <script>
-import Feature from './components/base/Feature.vue';
-
-
-import Footer from "./components/base/Footer";
-import Header from "./components/base/Header";
-import MainSlider from './components/base/MainSlider.vue';
-
+import Footer from './components/base/Footer.vue'
+import Header from './components/base/Header.vue'
 
 export default {
   name: 'App',
   components: {
     Header,
-    Footer,
-    MainSlider,
-    Feature,
+    Footer,       
   },
 }
 </script>

@@ -41,6 +41,12 @@ export default {
 .features {
   padding-top: 88px;
   padding-bottom: 88px;
+  
+  @include respond-to('xs')  {
+    padding-top: 40px;
+    padding-bottom: 40px;
+            
+  }  
 		&__container {
       display: flex;
       flex-wrap: wrap;
@@ -57,10 +63,6 @@ export default {
       text-align: center;
       align-self: center;
       grid-row: span 2;
-
-      @media (max-width: $md3 +px) {
-        padding: 0 15px 0 0;
-      }
     }
 
 		&__title {

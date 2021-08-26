@@ -28,12 +28,13 @@ $color-error: #FF5E5E;
 //size
 $max-width: 1440px;
 
-// indent
+// indent9
 $grid-gap: 20px;
 
 // responsive-breakpoints
 $responsive-breakpoints: (
-  xs: 767px,
+  xxs: 479.98px,
+  xs: 767.98px,
   sm: 991.98px,
   md: 1024px,
   lg: 1279px,
@@ -42,7 +43,7 @@ $responsive-breakpoints: (
 
 
 //variable
-
+$md1: 1024;
 $md2: 991.98;
 $md3: 767.98;
 $md4: 479.98;

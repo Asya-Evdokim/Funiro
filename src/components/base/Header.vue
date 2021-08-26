@@ -3,7 +3,7 @@
     <div class="header__wrapper container">
       
         <div class="header__left">
-          <a href="#" class="header__logo">Funiro.</a>
+          <router-link to="/" class="header__logo">Funiro.</router-link>
           <div class="header__menu menu">
             <nav class="menu__body" :class="{_active: menuBurger.burger}">
             <ul class="menu__list">
@@ -111,13 +111,8 @@ export default {
 <style scoped lang="scss">
 .header {
   position: relative;
-  width: 100%;
-  top: 0;
-  left: 0;
   background-color: $color-main;
 
-  
-  
   &__wrapper {
     display: flex;
     align-items: center;
@@ -150,9 +145,7 @@ export default {
 
     @media (max-width: $md2 +px) {
       padding-right: 20px;
-    }
-
-    
+    }   
 	}
   
   &__search {
@@ -170,17 +163,14 @@ export default {
     grid-template-columns: auto;
     grid-auto-flow: column;
     align-items: center;
-      
-     // display: flex;
-     // flex: 0 0 152px;
-     // justify-content: space-between;
-     // align-items: center;
 	}
 
 	&__avatar {
     width: 40px;
     border-radius: 50%;
 	}
+
+
 }
 
 .menu {
@@ -253,7 +243,10 @@ export default {
     @include respond-to('md') {
       &.active {
         .menu__sub-list {
-          position: relative;
+          @include respond-to('xs') {
+            position: relative;
+          }
+          
           transform: translate(0, 0);
           opacity: 1;
           visibility: visible;
@@ -368,12 +361,10 @@ export default {
           padding: 0 46px 0 20px;
         }
         .search-form-btn {
-        background-color: $color-orange;
-       color: white; 
-       z-index: 2;
-
+          background-color: $color-orange;
+          color: white; 
+          z-index: 2;
        }
-
       }
     }
 	}
@@ -430,6 +421,12 @@ export default {
         color: $color-orange;
       }
     }
+
+    @include respond-to('xs') {
+        display: none;
+    }
+
+
   }
 }
 
@@ -450,7 +447,7 @@ export default {
       align-items: center;
       background-color: $color-orange;
       color: #fff;
-       font-size: 12px;
+      font-size: 12px;
     }
 	}
 }
