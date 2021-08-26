@@ -74,10 +74,11 @@ export default {
 <style scoped lang="scss">
 
 ::v-deep .splide__slide {
-   //width: auto !important; 
+   
    padding: 0 15px; 
 
    @media (min-width: $md1+px) {        
+        width: auto !important; 
         position: relative;
         padding: 0 30px;
    }

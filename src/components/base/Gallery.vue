@@ -74,6 +74,7 @@ export default {
 <style scoped lang="scss">
 
 .furniture {
+    overflow: hidden;
     margin-top: 44px;
 
 		&__container {

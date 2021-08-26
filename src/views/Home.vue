@@ -3,6 +3,7 @@
     <main-slider/>
     <feature/>
     <products/>
+    
     <tips-tricks/>
     <gallery/>         
 </main>
@@ -12,7 +13,6 @@
 
 import Feature from '../components/base/Feature.vue'
 import Gallery from '../components/base/Gallery.vue'
-
 import MainSlider from '../components/base/MainSlider.vue'
 import Products from '../components/base/Products.vue'
 import TipsTricks from '../components/base/TipsTricks.vue'
@@ -25,7 +25,7 @@ export default {
         Feature,
         Products,
         TipsTricks,
-        Gallery  
+        Gallery,        
     },
 }
 

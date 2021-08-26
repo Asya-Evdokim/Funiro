@@ -14,7 +14,7 @@
                       <div class="item-product__body">
                           <div class="item-product__content">
                               <h5 class="item-product__title" v-html="item.title"></h5>
-                              <p class="item-product__text">Stylish cafe chair</p>
+                              <p class="item-product__text" v-html="item.description"></p>
                           </div>
                           <div class="item-product__prices">
                               <span class="item-product__price">Rp {{item.price}}</span>

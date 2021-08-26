@@ -1,8 +1,8 @@
 <template>
-    <div>
+    <section class="page__products-margin">
         <our-products/>
         <router-link to="/ourProducts" class="products__button btn">Show More</router-link>
-    </div>
+    </section>
 </template>
 
 <script>
@@ -14,6 +14,10 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.page__products-margin {
+    margin-bottom: 44px;
+
+}
 
 .products__items {
     @include respond-to('xs') {
